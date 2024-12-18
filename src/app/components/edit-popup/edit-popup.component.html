@@ -1,0 +1,74 @@
+<p-dialog
+  [header]="header"
+  [(visible)]="display"
+  [modal]="true"
+  [closable]="false"
+  class="custom-dialog"
+>
+  <!-- Circular Image Section -->
+  <div class="image-container">
+    <img
+      [src]="productForm.get('image')?.value || 'https://via.placeholder.com/150'"
+      alt="Product Image"
+      class="product-image"
+    />
+  </div>
+
+  <div class="form-wrapper" [formGroup]="productForm">
+    <!-- Name -->
+    <div class="form-row">
+      <label for="name">Name:</label>
+      <input id="name" type="text" formControlName="name" placeholder="Enter product name" />
+    </div>
+
+    <!-- Price -->
+    <div class="form-row">
+      <label for="price">Price:</label>
+      <input id="price" type="text" formControlName="price" placeholder="Enter price" />
+    </div>
+
+    <!-- Image -->
+    <div class="form-row">
+      <label for="image">Image URL:</label>
+      <input
+        id="image"
+        type="text"
+        formControlName="image"
+        placeholder="Enter image URL"
+      />
+    </div>
+
+    <!-- Rating -->
+    <div class="form-row">
+      <label for="rating">Rating:</label>
+      <p-rating
+        id="rating"
+        formControlName="rating"
+        [readonly]="false"
+        iconCancelClass="hidden"
+        class="rating"
+      ></p-rating>
+    </div>
+  </div>
+
+  <!-- Footer with action buttons -->
+  <p-footer class="dialog-footer">
+    <button
+      type="button"
+      pButton
+      icon="pi pi-check"
+      (click)="onConfirm()"
+      label="Confirm"
+      [disabled]="!productForm.valid"
+      class="confirm-button"
+    ></button>
+    <button
+      type="button"
+      pButton
+      icon="pi pi-times"
+      (click)="onCancel()"
+      label="Cancel"
+      class="cancel-button"
+    ></button>
+  </p-footer>
+</p-dialog>
